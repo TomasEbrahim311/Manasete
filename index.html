@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>منصتي — الدعم النفسي & المجتمع</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    
+    <link rel="stylesheet" href="stylet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div class="logo">منصتي</div>
+        <div class="subtitle">دعم نفسي — مجتمع طلابي آمن</div>
+      </div>
+      <button
+        id="themeToggle"
+        aria-label="تبديل الوضع"
+        style="margin-right: auto"
+      >
+        🌙
+      </button>
+    </header>
+
+    <main>
+      <section id="home" class="active">
+        <div class="quote-box">
+          <div id="quoteText" class="q">...جارٍ تحميل التحفيز اليومي</div>
+          <div id="quoteMeta" class="meta">
+            جملة تحفيزية لتبدأ يومك بشكل أفضل
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>أهلاً بك 👋</h3>
+          <p>
+            هذه منصتك للدعم النفسي — تقدر تسجل يومياتك، تتعلم كيفية مواجهة
+            المواقف، وتتواصل مع المجتمع.
+          </p>
+        </div>
+
+        <div class="card" id="habitTracker">
+          <h4>تتبع عاداتك اليومية</h4>
+          <p class="muted">اختر العادات التي أنجزتها اليوم.</p>
+          <div id="habits-list"></div>
+          <button class="add-habit-btn" id="addHabitBtn">
+            + إضافة عادة جديدة
+          </button>
+        </div>
+
+        <div class="card">
+          <h4>جرب الشات بوت</h4>
+          <p>
+            اضغط على زر الشات في الأسفل أو اكتب سؤالك عشان يساعدك في مشاكل مثل:
+            التنمر — القلق — تنظيم الوقت — التغذية.
+          </p>
+        </div>
+      </section>
+
+      <section id="daily">
+        <h2>نظم وقتك</h2>
+        </nav>
+        <div class="card todo-list" id="todoCard">
+          <span>
+            <h4>قائمة المهام اليومية 📝</h4>
+            <button id="addTodoBtn" class="btn">+</button>
+          </span>
+          <div id="todoListContainer" class="todo-list-container">
+            <p class="muted">لا توجد مهام مضافة بعد.</p>
+          </div>
+        </div>
+        <div class="card" id="priority-matrix-card" style="margin-bottom: 18px">
+          <h4 style="text-align: center">الأولويات</h4>
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 16px;
+              justify-content: space-between;
+            "
+          >
+            <div class="priorities">
+              <strong>هام وعاجل</strong>
+              <p class="muted" style="margin-top: 8px">
+                المهام التي يجب تنفيذها فورًا ولا يمكن تأجيلها.
+              </p>
+              <div class="list" id="imAndUr"></div>
+            </div>
+            <div class="priorities">
+              <strong>هام لكن غير عاجل</strong>
+              <p class="muted" style="margin-top: 8px">
+                المهام المهمة التي يمكن جدولتها لاحقًا.
+              </p>
+              <div class="list" id="imAndNUr"></div>
+            </div>
+            <div class="priorities">
+              <strong>غير هام وعاجل</strong>
+              <p class="muted" style="margin-top: 8px">
+                المهام العاجلة لكنها ليست ذات أهمية كبيرة.
+              </p>
+              <div class="list" id="nImAndUr"></div>
+            </div>
+            <div class="priorities">
+
+              <strong>غير هام وغير عاجل</strong>
+              <p class="muted" style="margin-top: 8px">
+                المهام التي يمكن تجاهلها أو تأجيلها كثيرًا.
+              </p>
+              <div class="list" id="nImAndNUr"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card pomodoro-card">
+          <h4>تقنية البومودورو🍅</h4>
+          <nav class="modus-switch">
+            <button class="btn btn--active" id="pomodoroBtn" value="pomodoro">
+              <p class="body-1">pomodoro</p>
+            </button>
+            <button class="btn" id="shortBreakBtn" value="shortBreak">
+              <p class="body-1">short break</p>
+            </button>
+            <button class="btn" id="longBreakBtn" value="longBreak">
+              <p class="body-1">long break</p>
+            </button>
+          </nav>
+
+          <div class="timer">
+            <div class="timer__inner" tabindex="0">
+              <svg class="timer__circle">
+                <path id="timer-arc" d="" />
+              </svg>
+              <div class="timer__time">
+                <h1 class="heading-1" id="time__seconds">00</h1>
+                <h1 class="heading-1" id="time__colon">:</h1>
+                <h1 class="heading-1" id="time__minutes">25</h1>
+              </div>
+              <div class="timer__status">
+                <h3 class="heading-3" id="timer__status">start</h3>
+              </div>
+            </div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol id="logo" viewBox="0 0 153 32">
+              <path
+                style="fill: inherit"
+                d="M4.578 31.813v-9.36a7.383 7.383 0 004.984 1.86c1.47 0 2.777-.352 3.922-1.055 1.146-.703 2.047-1.667 2.704-2.89.656-1.225.984-2.618.984-4.18 0-1.563-.328-2.956-.985-4.18-.656-1.224-1.557-2.188-2.703-2.89-1.145-.704-2.453-1.056-3.921-1.056-1.01 0-1.954.175-2.829.524a6.985 6.985 0 00-2.296 1.476l-.11-1.687H.078v23.438h4.5zm3.969-11.407c-1.146 0-2.094-.4-2.844-1.203-.75-.802-1.125-1.807-1.125-3.015 0-1.209.375-2.214 1.125-3.016s1.698-1.203 2.844-1.203 2.094.4 2.844 1.203c.75.802 1.125 1.807 1.125 3.015 0 1.209-.375 2.214-1.125 3.016s-1.698 1.203-2.844 1.203zm18.844 3.907c1.604 0 3.03-.352 4.28-1.055a7.85 7.85 0 002.962-2.89c.724-1.225 1.086-2.618 1.086-4.18 0-1.563-.362-2.956-1.086-4.18a7.85 7.85 0 00-2.961-2.89c-1.25-.704-2.677-1.056-4.281-1.056-1.605 0-3.034.352-4.29 1.055a7.834 7.834 0 00-2.968 2.89c-.724 1.225-1.086 2.618-1.086 4.18 0 1.563.362 2.956 1.086 4.18a7.834 7.834 0 002.969 2.89c1.255.704 2.684 1.055 4.289 1.055zm0-3.907c-1.146 0-2.094-.4-2.844-1.203-.75-.802-1.125-1.807-1.125-3.015 0-1.209.375-2.214 1.125-3.016s1.698-1.203 2.844-1.203c1.145 0 2.093.4 2.843 1.203.75.802 1.125 1.807 1.125 3.015 0 1.209-.375 2.214-1.125 3.016s-1.698 1.203-2.843 1.203zM43.188 24v-8.297c0-1.24.286-2.172.859-2.797s1.266-.937 2.078-.937c.802 0 1.487.302 2.055.906.567.604.851 1.51.851 2.719V24h4.5v-8.297c0-1.24.287-2.172.86-2.797s1.265-.937 2.078-.937c.802 0 1.487.302 2.054.906.568.604.852 1.51.852 2.719V24h4.5v-8.406c0-2.365-.526-4.211-1.578-5.54-1.052-1.327-2.526-1.992-4.422-1.992-1.198 0-2.24.266-3.125.797-.885.532-1.589 1.292-2.11 2.282-1-2.052-2.703-3.079-5.109-3.079-1.885 0-3.38.657-4.484 1.97l-.11-1.657h-4.25V24h4.5zm31.687.313c1.604 0 3.031-.352 4.281-1.055a7.85 7.85 0 002.961-2.89c.724-1.225 1.086-2.618 1.086-4.18 0-1.563-.362-2.956-1.086-4.18a7.85 7.85 0 00-2.96-2.89c-1.25-.704-2.678-1.056-4.282-1.056s-3.034.352-4.29 1.055a7.834 7.834 0 00-2.968 2.89c-.724 1.225-1.086 2.618-1.086 4.18 0 1.563.362 2.956 1.086 4.18a7.834 7.834 0 002.969 2.89c1.255.704 2.685 1.055 4.289 1.055zm0-3.907c-1.146 0-2.094-.4-2.844-1.203-.75-.802-1.125-1.807-1.125-3.015 0-1.209.375-2.214 1.125-3.016s1.698-1.203 2.844-1.203 2.094.4 2.844 1.203c.75.802 1.125 1.807 1.125 3.015 0 1.209-.375 2.214-1.125 3.016s-1.698 1.203-2.844 1.203zm17.813 3.907c1.02 0 1.966-.175 2.835-.524a7.005 7.005 0 002.29-1.477L97.921 24h4.25V.562h-4.5v9.36a7.383 7.383 0 00-4.984-1.86c-1.459 0-2.764.352-3.915 1.055a7.433 7.433 0 00-2.71 2.89c-.657 1.225-.985 2.618-.985 4.18 0 1.563.328 2.956.984 4.18a7.433 7.433 0 002.711 2.89c1.151.704 2.456 1.055 3.915 1.055zm1.015-3.907c-1.146 0-2.094-.4-2.844-1.203-.75-.802-1.125-1.807-1.125-3.015 0-1.209.375-2.214 1.125-3.016s1.698-1.203 2.844-1.203 2.094.4 2.844 1.203c.75.802 1.125 1.807 1.125 3.015 0 1.209-.375 2.214-1.125 3.016s-1.698 1.203-2.844 1.203zm19.781 3.907c1.605 0 3.032-.352 4.282-1.055a7.85 7.85 0 002.96-2.89c.725-1.225 1.087-2.618 1.087-4.18 0-1.563-.362-2.956-1.086-4.18a7.85 7.85 0 00-2.961-2.89c-1.25-.704-2.677-1.056-4.282-1.056-1.604 0-3.033.352-4.289 1.055a7.834 7.834 0 00-2.968 2.89c-.724 1.225-1.086 2.618-1.086 4.18 0 1.563.362 2.956 1.086 4.18a7.834 7.834 0 002.968 2.89c1.256.704 2.685 1.055 4.29 1.055zm0-3.907c-1.145 0-2.093-.4-2.843-1.203-.75-.802-1.125-1.807-1.125-3.015 0-1.209.375-2.214 1.125-3.016s1.698-1.203 2.843-1.203c1.146 0 2.094.4 2.844 1.203.75.802 1.125 1.807 1.125 3.015 0 1.209-.375 2.214-1.125 3.016s-1.698 1.203-2.844 1.203zM129.281 24v-6.89c0-1.646.37-2.915 1.11-3.805.74-.89 1.713-1.336 2.922-1.336a5.7 5.7 0 011.78.297l.626-3.891a7.505 7.505 0 00-2.094-.313c-1.99 0-3.552.85-4.688 2.547l-.218-2.234h-3.938V24h4.5zm15.406.313c1.605 0 3.032-.352 4.282-1.055a7.85 7.85 0 002.96-2.89c.725-1.225 1.087-2.618 1.087-4.18 0-1.563-.362-2.956-1.086-4.18a7.85 7.85 0 00-2.961-2.89c-1.25-.704-2.677-1.056-4.281-1.056-1.605 0-3.034.352-4.29 1.055a7.834 7.834 0 00-2.968 2.89c-.724 1.225-1.086 2.618-1.086 4.18 0 1.563.362 2.956 1.086 4.18a7.834 7.834 0 002.968 2.89c1.256.704 2.685 1.055 4.29 1.055zm0-3.907c-1.145 0-2.093-.4-2.843-1.203-.75-.802-1.125-1.807-1.125-3.015 0-1.209.375-2.214 1.125-3.016s1.698-1.203 2.844-1.203c1.145 0 2.093.4 2.843 1.203.75.802 1.125 1.807 1.125 3.015 0 1.209-.375 2.214-1.125 3.016s-1.698 1.203-2.844 1.203z"
+              />
+            </symbol>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol id="settings" viewBox="0 0 28 28">
+              <path
+                style="fill: inherit"
+                d="M26.965 17.682l-2.927-2.317c.055-.448.097-.903.097-1.365 0-.462-.042-.917-.097-1.365l2.934-2.317a.702.702 0 00.167-.896l-2.775-4.851a.683.683 0 00-.847-.301l-3.454 1.407a10.506 10.506 0 00-2.345-1.379l-.52-3.71A.716.716 0 0016.503 0h-5.55a.703.703 0 00-.687.588l-.52 3.71c-.847.357-1.63.819-2.345 1.379L3.947 4.27a.691.691 0 00-.847.301L.325 9.422a.705.705 0 00.167.896l2.927 2.317c-.055.448-.097.903-.097 1.365 0 .462.042.917.097 1.365L.492 17.682a.702.702 0 00-.167.896L3.1 23.429a.683.683 0 00.847.301L7.4 22.323a10.506 10.506 0 002.345 1.379l.52 3.71c.056.329.34.588.687.588h5.55a.703.703 0 00.687-.588l.52-3.71c.847-.357 1.631-.819 2.346-1.379l3.454 1.407c.313.119.673 0 .847-.301l2.775-4.851a.705.705 0 00-.167-.896zM13.73 18.9c-2.685 0-4.857-2.191-4.857-4.9 0-2.709 2.172-4.9 4.857-4.9 2.684 0 4.856 2.191 4.856 4.9 0 2.71-2.172 4.9-4.856 4.9z"
+              />
+            </symbol>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol id="icon-close" viewBox="0 0 14 14">
+              <path
+                fill="#1E213F"
+                fill-rule="evenodd"
+                d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z"
+                opacity=".5"
+              />
+            </symbol>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol id="icon-arrow-up" viewBox="0 0 14 7">
+              <path
+                fill="none"
+                stroke="#1E213F"
+                stroke-opacity=".25"
+                stroke-width="2"
+                d="M1 6l6-4 6 4"
+              />
+            </symbol>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol id="icon-arrow-down" viewBox="0 0 14 7">
+              <path
+                fill="none"
+                stroke="#1E213F"
+                stroke-opacity=".25"
+                stroke-width="2"
+                d="M1 1l6 4 6-4"
+              />
+            </symbol>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol
+              id="check"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </symbol>
+          </svg>
+        </div>
+
+        <div class="card">
+          <h4>يوميات الامتنان ✍️</h4>
+          <p class="muted">اكتب 3 أشياء تشعر بالامتنان تجاهها اليوم.</p>
+          <div
+            id="gratitude-list-container"
+            class="gratitude-list-container"
+          ></div>
+          <textarea
+            id="gratitudeInput"
+            rows="3"
+            placeholder="ما هي الأشياء التي تشعر بالامتنان تجاهها اليوم؟"
+          ></textarea>
+          <button
+            id="saveGratitudeBtn"
+            class="btn"
+            style="width: 100%; margin-top: 10px"
+          >
+            حفظ اليوميات
+          </button>
+        </div>
+      </section>
+
+      <section id="community">
+        <h2 style="text-align: center">💬 مجتمع الطلاب</h2>
+
+        <div class="card new-post">
+          <input id="postAuthor" type="text" placeholder="اسمك (اختياري)" />
+          <input
+            id="postTitle"
+            type="text"
+            placeholder="عنوان المنشور (اختياري)"
+          />
+          <textarea
+            id="postContent"
+            rows="4"
+            placeholder="اكتب ما تريد مشاركته..."
+          ></textarea>
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              align-items: center;
+              flex-wrap: wrap;
+            "
+          >
+            <label
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+              "
+            >
+              <input
+                id="postImage"
+                type="file"
+                accept="image/*"
+                style="display: none"
+              />
+              <span class="btn ghost">📷 إضافة صورة</span>
+            </label>
+            <button class="btn" id="publishBtn">نشر</button>
+            <div id="previewWrap" style="margin-right: auto"></div>
+          </div>
+        </div>
+
+        <div
+          class="posts-list card"
+          id="postsContainer"
+          aria-live="polite"
+        ></div>
+      </section>
+
+      <section id="profile">
+        <div id="login-container" class="auth-card">
+          <h4>تسجيل الدخول 👋</h4>
+          <p class="muted">للوصول إلى ملفك الشخصي، قم بتسجيل الدخول.</p>
+          <form id="loginForm">
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="البريد الإلكتروني"
+              required
+            />
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="كلمة المرور"
+              required
+            />
+            <button type="submit" class="btn">تسجيل الدخول</button>
+          </form>
+          <p class="muted" style="margin-top: 15px">
+            لا يوجد حساب؟ <a href="#" id="showSignup">قم بإنشاء حساب جديد.</a>
+          </p>
+        </div>
+
+        <div id="signup-container" class="auth-card hidden">
+          <h4>إنشاء حساب جديد ✨</h4>
+          <p class="muted">اكتب اسمك وبريدك الإلكتروني وكلمة المرور.</p>
+          <form id="signupForm">
+            <input
+              type="text"
+              id="signupName"
+              placeholder="اسمك الكامل"
+              required
+            />
+            <input
+              type="email"
+              id="signupEmail"
+              placeholder="البريد الإلكتروني"
+              required
+            />
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="كلمة المرور"
+              required
+            />
+            <button type="submit" class="btn">إنشاء الحساب</button>
+          </form>
+          <p class="muted" style="margin-top: 15px">
+            لديك حساب بالفعل؟ <a href="#" id="showLogin">قم بتسجيل الدخول.</a>
+          </p>
+        </div>
+
+        <div id="profile-content" class="card hidden">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h2 id="profileName">الملف الشخصي</h2>
+            <button
+              id="logoutBtn"
+              class="btn"
+              style="background: #dc3545; font-size: 14px; padding: 8px 12px"
+            >
+              تسجيل الخروج
+            </button>
+          </div>
+          <p>البريد الإلكتروني: <span id="profileEmail"></span></p>
+
+          <div class="card" style="margin-top: 20px; padding: 15px">
+            <h4>كيف تشعر اليوم؟</h4>
+            <div class="mood-card">
+              <div id="moodDisplay" class="mood-display">😊</div>
+              <div class="mood-controls">
+                <button class="mood-btn" data-mood="😊" title="سعيد">😊</button>
+                <button class="mood-btn" data-mood="😌" title="هادئ">😌</button>
+                <button class="mood-btn" data-mood="😐" title="طبيعي">
+                  😐
+                </button>
+                <button class="mood-btn" data-mood="😔" title="حزين">😔</button>
+                <button class="mood-btn" data-mood="😠" title="غاضب">😠</button>
+              </div>
+              <p class="muted" id="moodTimestamp" style="margin-top: 10px"></p>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            id="goalsAndAchievements"
+            style="margin-top: 10px; padding: 15px"
+          >
+            <h4>الإنجازات والأهداف</h4>
+            <p class="muted">حدد أهدافك وتتبع تقدمك نحو تحقيقها.</p>
+            <div id="goals-list-container"></div>
+            <button
+              id="addGoalBtn"
+              class="add-habit-btn"
+              style="width: 100%; margin-top: 15px"
+            >
+              + إضافة هدف جديد
+            </button>
+            <hr
+              style="
+                border: none;
+                border-top: 1px solid #eef6fb;
+                margin: 20px 0;
+              "
+            />
+            <h5>الإنجازات المكتملة 🎉</h5>
+            <div id="completed-goals-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav id="bottomNav">
+      <button data-section="home" class="active">
+        🏠<span style="font-size: 12px">الرئيسية</span>
+      </button>
+      <button data-section="daily">
+        📅<span style="font-size: 12px">نظم وقتك</span>
+      </button>
+      <button data-section="community">
+        👥<span style="font-size: 12px">المجتمع</span>
+      </button>
+      <button data-section="profile">
+        👤<span style="font-size: 12px">الملف</span>
+      </button>
+    </nav>
+
+    <button class="chatbot-btn" id="chatToggle" aria-label="افتح الشات">
+      💬
+    </button>
+
+    <div
+      class="chat-popup"
+      id="chatPopup"
+      role="dialog"
+      aria-modal="false"
+      aria-label="مساعدك الشخصي"
+    >
+      <div class="chat-header">
+        <div>
+          <div class="title">مساعدك الشخصي</div>
+          <div style="font-size: 12px; opacity: 0.9">
+            اسألني عن القلق، التنمر، تنظيم الوقت، أو اطلب نصيحة.
+          </div>
+        </div>
+        <div class="actions">
+          <button id="clearChat" title="مسح المحادثة">🗑️</button>
+          <button id="closeChat" title="إغلاق">✖</button>
+        </div>
+      </div>
+      <div class="chat-body" id="chatBody" aria-live="polite"></div>
+      <div class="chat-footer">
+        <input
+          id="chatInput"
+          type="text"
+          placeholder="اكتب سؤالك واضغط Enter..."
+          aria-label="اكتب رسالتك"
+        />
+        <button class="btn" id="sendBtn">إرسال</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="scriptt.js"></script>
+  </body>
+</html>
